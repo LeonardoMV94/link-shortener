@@ -1,0 +1,27 @@
+{
+  "name": "frontend",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "npx astro dev",
+    "build": "npx astro build",
+    "preview": "npx astro preview",
+    "astro": "npx astro",
+    "deploy:dev": "npx astro build && npx wrangler dev",
+    "deploy:prod": "npx astro build && npx wrangler deploy --minify"
+  },
+  "dependencies": {
+    "@astrojs/vue": "^5.0.9",
+    "@tailwindcss/vite": "^4.1.3",
+    "astro": "^5.6.1",
+    "daisyui": "^5.0.19",
+    "qrious": "^4.0.2",
+    "tailwindcss": "^4.1.3",
+    "vue": "^3.5.13"
+  },
+  "packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81",
+  "devDependencies": {
+    "@types/qrcode": "^1.5.5",
+    "wrangler": "^4.10.0"
+  }
+}

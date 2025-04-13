@@ -1,0 +1,21 @@
+---
+import ShortenUrlForm from '../components/ShortenUrlForm.vue';
+import Layout from '../layouts/Layout.astro';
+import AuthBar from '../components/AuthBar.vue';
+---
+
+<Layout>
+  <div
+    class="min-h-screen flex items-center justify-center bg-base-100 dark:bg-base-300 p-4"
+  >
+    <!-- Botón de login -->
+    <AuthBar client:load/>
+    <div
+      class="max-w-sm w-full shadow-md overflow-hidden"
+    >
+      <div class="p-6 space-y-4">
+        <ShortenUrlForm client:load />
+      </div>
+    </div>
+  </div>
+</Layout>

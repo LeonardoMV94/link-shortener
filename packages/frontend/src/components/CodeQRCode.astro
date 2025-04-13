@@ -1,0 +1,85 @@
+<div
+  class="min-h-screen flex items-center justify-center bg-base-100 dark:bg-base-300 p-4 relative"
+>
+  <div
+    class="max-w-sm w-full dark:bg-base-200 rounded-2xl shadow-md overflow-hidden"
+  >
+    <div class="p-6 space-y-4">
+      <h2 class="text-xl font-semibold text-gray-800 dark:text-white">
+        Tu enlace acortado
+      </h2>
+
+      <div class="flex items-center space-x-2">
+        <input
+          id="shortUrl"
+          type="text"
+          readonly
+          class="input input-bordered w-full"
+          value=""
+        />
+        <button id="copyButton" class="btn btn-neutral">Copiar</button>
+      </div>
+
+      <div class="mt-4 flex justify-center">
+        <img id="qrImage" src="" alt="QR Code" class="w-48 h-48" />
+      </div>
+
+      <!-- Botón para descargar la imagen PNG -->
+      <div class="flex justify-center mt-4">
+        <a
+          id="downloadBtn"
+          href="#"
+          target="_blank"
+          download
+          class="btn btn-neutral hidden">Descargar Imagen QR</a
+        >
+      </div>
+
+      <div id="toast" class="toast toast-bottom toast-center hidden">
+        <div class="alert alert-success">
+          <span class="text-white">URL copiada al portapapeles</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Obtener el parámetro 'code' desde la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code'); // Debería devolver 'https://hola.com'
+
+    if (code) {
+      const fullUrl = code; // El valor del parámetro 'code' ya es la URL completa
+      const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(fullUrl)}`;
+
+      const shortUrlInput = document.getElementById('shortUrl');
+      const qrImage = document.getElementById('qrImage');
+      const copyButton = document.getElementById('copyButton');
+      const toast = document.getElementById('toast');
+      const downloadButton = document.getElementById('downloadBtn');
+
+      // Actualizar el input y la imagen del QR
+      shortUrlInput.value = fullUrl;
+      qrImage.src = qrApiUrl;
+
+      // Habilitar botón de descarga
+      downloadButton.href = qrApiUrl; // Establece el enlace de descarga al QR generado
+      downloadButton.classList.remove('hidden'); // Muestra el botón de descarga
+
+      // Copiar al portapapeles
+      copyButton?.addEventListener('click', () => {
+        navigator.clipboard.writeText(fullUrl).then(() => {
+          toast.classList.remove('hidden');
+
+          setTimeout(() => {
+            toast.classList.add('hidden');
+          }, 3000);
+        });
+      });
+    } else {
+      console.error('El parámetro "code" no se encuentra en la URL.');
+    }
+  });
+</script>
