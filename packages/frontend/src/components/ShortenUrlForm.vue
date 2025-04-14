@@ -38,10 +38,11 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
-import { VITE_SITEKEY, VITE_API_URL } from 'astro:env/client'
+import { VITE_SITEKEY, VITE_API_URL, VITE_PAGE_URL } from 'astro:env/client'
 
 const sitekey = VITE_SITEKEY
 const apiUrl = VITE_API_URL
+const pageUrl = VITE_PAGE_URL
 
 const url = ref('')
 const isValidUrl = ref(false)
@@ -132,7 +133,7 @@ const submitForm = async () => {
     const data = await response.json()
 
     if (data.shortUrl) {
-      window.location.href = `${apiUrl}/code?code=${data.shortUrl}`
+      window.location.href = `${pageUrl}/code?code=${data.shortUrl}`
     } else {
       errorMessage.value = 'Respuesta inesperada del servidor.'
     }

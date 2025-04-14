@@ -1,4 +1,5 @@
 import { Hono, Next, Context } from 'hono';
+import { deleteCookie } from 'hono/cookie';
 import { generateToken } from '../utils/jwt';
 import type { Bindings, Variables } from '../types';
 import { googleAuth } from '@hono/oauth-providers/google';
@@ -71,7 +72,7 @@ app.get('/google/callback', googleMiddleware, async (c) => {
       {
         name: user.name || '',
         picture: user.picture || '',
-        sub: user.email || '',
+        sub: user.email || ''
       },
       c.env.JWT_SECRET
     );
@@ -94,11 +95,15 @@ app.get('/me', authMiddleware, (c) => {
 });
 
 app.get('/logout', (c) => {
-  // Eliminar la cookie de sesión
-  c.header(
-    'Set-Cookie',
-    `token=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0`
-  );
+  
+  deleteCookie(c, 'token', {
+    domain: 'pctester.cl', 
+    path: '/', 
+    sameSite: 'None', 
+    secure: true, 
+    httpOnly: true, 
+    expires: new Date(0)
+  });
 
   // Redirigir al frontend (por ejemplo, a la página de inicio o de login)
   return c.redirect(`${c.env.PAGE_URL}`);

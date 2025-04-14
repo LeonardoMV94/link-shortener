@@ -12,6 +12,7 @@ export default defineConfig({
     schema: {
       VITE_SITEKEY: envField.string({context: 'client', access: 'public'}),
       VITE_API_URL: envField.string({context: 'client', access: 'public'}),
+      VITE_PAGE_URL: envField.string({context: 'client', access: 'public'}),
       VITE_TITLE: envField.string({context: 'client', access: 'public'}),
     }
   },
