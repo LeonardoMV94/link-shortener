@@ -138,7 +138,7 @@ const submitForm = async () => {
       errorMessage.value = 'Respuesta inesperada del servidor.'
     }
   } catch (error) {
-    errorMessage.value = 'Ocurrió un error al acortar la URL.'
+    errorMessage.value = 'Debe iniciar sesion para acortar URLs.'
   } finally {
     loading.value = false
   }

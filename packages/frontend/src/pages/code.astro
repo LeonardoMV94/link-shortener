@@ -1,6 +1,7 @@
 ---
 
 import CodeQRCode from '../components/CodeQRCode.astro';
+import ReturnHomeBtn from '../components/ReturnHomeBtn.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
@@ -8,6 +9,8 @@ import Layout from '../layouts/Layout.astro';
   <div
     class="min-h-screen flex items-center justify-center bg-base-100 dark:bg-base-300 p-4 relative"
   >
+    <!--  boton para volver a / -->
+    <ReturnHomeBtn></ReturnHomeBtn>
     <CodeQRCode  />
   </div>
 </Layout>
