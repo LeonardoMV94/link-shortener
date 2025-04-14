@@ -28,7 +28,7 @@ app.post('/acortador', authMiddleware, async (c) => {
     .first<{ code: string, url: string }>();
   if (resultUrl) {
     console.log('URL ya existe: ', resultUrl.url);
-    return c.json({ shortUrl:  `${c.env.BACKEND_URL}/${resultUrl.code}` ,message: 'URL ya existe' });
+    return c.json({ shortUrl:  `${c.env.PAGE_URL}/${resultUrl.code}` ,message: 'URL ya existe' });
   }
   await c.env.DB.prepare(
     'INSERT INTO links (code, url,user_id) VALUES (?, ?, ?)'
@@ -36,7 +36,7 @@ app.post('/acortador', authMiddleware, async (c) => {
     .bind(code, url, result.id)
     .run();
 
-  return c.json({ shortUrl: `${c.env.BACKEND_URL}/${code}`, message: 'URL insertada' });
+  return c.json({ shortUrl: `${c.env.PAGE_URL}/${code}`, message: 'URL insertada' });
 });
 
 // Redirección pública

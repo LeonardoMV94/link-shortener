@@ -6,7 +6,11 @@ settings:
 
 importers:
 
-  .: {}
+  .:
+    devDependencies:
+      pnpm:
+        specifier: ^8.15.9
+        version: 8.15.9
 
   packages/backend-link-shorter:
     dependencies:
@@ -38,6 +42,9 @@ importers:
       astro:
         specifier: ^5.6.1
         version: 5.6.1(typescript@5.8.3)
+      cfturnstile-vue3:
+        specifier: ^2.0.0
+        version: 2.0.0(typescript@5.8.3)
       daisyui:
         specifier: ^5.0.19
         version: 5.0.19
@@ -2063,6 +2070,14 @@ packages:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
     dev: false
 
+  /cfturnstile-vue3@2.0.0(typescript@5.8.3):
+    resolution: {integrity: sha512-wamRC8ZoUAjvfOVoPAbJM14qqxc0gfjqfV6ESZh4rMs7G0yp+R4dpHNjxa7YAjdFTutaviMEZYCuK9tM4ZaGJQ==}
+    dependencies:
+      vue: 3.5.13(typescript@5.8.3)
+    transitivePeerDependencies:
+      - typescript
+    dev: false
+
   /chalk@5.4.1:
     resolution: {integrity: sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
@@ -3525,6 +3540,12 @@ packages:
     resolution: {integrity: sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==}
     engines: {node: '>=12'}
     dev: false
+
+  /pnpm@8.15.9:
+    resolution: {integrity: sha512-SZQ0ydj90aJ5Tr9FUrOyXApjOrzuW7Fee13pDzL0e1E6ypjNXP0AHDHw20VLw4BO3M1XhQHkyik6aBYWa72fgQ==}
+    engines: {node: '>=16.14'}
+    hasBin: true
+    dev: true
 
   /postcss@8.5.3:
     resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}

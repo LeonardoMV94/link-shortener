@@ -1,11 +1,19 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, envField } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
-import vue from "@astrojs/vue";   
+import vue from "@astrojs/vue";
 
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
+
   },
-  integrations: [vue()],   
+  env: {
+    schema: {
+      VITE_SITEKEY: envField.string({context: 'client', access: 'public'}),
+      VITE_API_URL: envField.string({context: 'client', access: 'public'}),
+      VITE_TITLE: envField.string({context: 'client', access: 'public'}),
+    }
+  },
+  integrations: [vue()],
 });
